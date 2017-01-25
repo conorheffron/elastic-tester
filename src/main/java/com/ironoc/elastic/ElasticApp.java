@@ -3,8 +3,8 @@ package com.ironoc.elastic;
 import java.io.IOException;
 import java.util.List;
 
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 import com.ironoc.elastic.model.Article;
@@ -23,27 +23,30 @@ public class ElasticApp {
 
 	public static void main(String[] args) {
 		String serverUri = args[0];
+		String index = args[1];
+		String type = args[2];
 
 		// Create Client
 		// Construct a new Jest client according to configuration via factory
 		JestClient client = getClient(serverUri);
 
 		// Index Creation
-//		createIndex("dev", client);
+//		createIndex(index, client);
 
 		// Insert an article;
-//		insertDocument(client, "dev", "article");
+//		Article source = new Article("Author", "Title");
+//		insertDocument(client, index, type, source);
 
 		// JEST Search
 		// You can search indexed article as:
 		String query = "{ \"query\": { \"match\" : { \"content\" : \"Lord\" } } }";
-		jestSearch(client, "dev", "article", query);
+		jestSearch(client, index, type, query);
 		
 		// JEST search with Model results
-		jestSearchModel(client, "dev", "article", query);
+		jestSearchModel(client, index, type, query);
 
 		// elastic search
-		elasticSearch(client, "dev", "article", "harry");
+		elasticSearch(client, index, type, "harry");
 		
 
 		client.shutdownClient();
@@ -51,7 +54,8 @@ public class ElasticApp {
 
 	private static void elasticSearch(JestClient client, String indexName, String type, String query) {
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-		searchSourceBuilder.query(QueryBuilders.queryString(query));
+		QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryString(query);
+		searchSourceBuilder.query(queryStringQueryBuilder);
 		Search searchElastic = (Search) new Search.Builder(searchSourceBuilder.toString())
 				// multiple index or types can be added.
 				.addIndex(indexName).addType(type).build();
@@ -62,7 +66,7 @@ public class ElasticApp {
 			List<Hit<Article, Void>> hits = elasticRs.getHits(Article.class);
 			for (Hit<Article, Void> hit : hits) {
 				Article talk = hit.source;
-				System.out.println(talk.toString());
+				System.out.println("Elastic hits: " + talk.toString());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -79,7 +83,7 @@ public class ElasticApp {
 			List<Hit<Article, Void>> hits = result.getHits(Article.class);
 			for (Hit<Article, Void> hit : hits) {
 				Article talk = hit.source;
-				System.out.println(talk.getAuthour());
+				System.out.println("JEST Search model hit: " + talk.toString());
 			}
 
 		} catch (IOException e) {
@@ -92,14 +96,13 @@ public class ElasticApp {
 		try {
 			JestResult result = client.execute(search);
 
-			System.out.println(result.getJsonObject());
+			System.out.println("JEST Search raw JSON Object: " + result.getJsonObject());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static void insertDocument(JestClient client, String indexName, String type) {
-		Article source = new Article("Dan Brown", "Da Vinci Code");
+	private static void insertDocument(JestClient client, String indexName, String type, Object source) {
 		Index index = new Index.Builder(source).index(indexName).type(type).build();
 		try {
 			client.execute(index);
