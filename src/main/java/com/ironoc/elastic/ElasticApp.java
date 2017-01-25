@@ -97,6 +97,8 @@ public class ElasticApp {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		client.shutdownClient();
 	}
 
 }
