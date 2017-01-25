@@ -6,6 +6,11 @@ public class Article {
 
 	private String content;
 
+	public Article(String authour, String content) {
+		this.authour = authour;
+		this.content = content;
+	}
+
 	public String getAuthour() {
 		return authour;
 	}

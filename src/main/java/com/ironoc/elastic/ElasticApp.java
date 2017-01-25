@@ -26,44 +26,51 @@ public class ElasticApp {
 
 		// Create Client
 		// Construct a new Jest client according to configuration via factory
-		JestClientFactory factory = new JestClientFactory();
-		factory.setHttpClientConfig(new HttpClientConfig.Builder(serverUri).connTimeout(6000).readTimeout(6000)
-				.multiThreaded(true).build());
-		JestClient client = factory.getObject();
+		JestClient client = getClient(serverUri);
 
 		// Index Creation
-		// try {
-		// client.execute(new CreateIndex.Builder("articles").build());
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
+//		createIndex("dev", client);
 
 		// Insert an article;
-		// Article source = new Article();
-		// source.setAuthour("JK Rowling");
-		// source.setContent("Harry Potter");
-		//
-		//
-		// Index index = new
-		// Index.Builder(source).index("dev").type("article").build();
-		// try {
-		// client.execute(index);
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
+//		insertDocument(client, "dev", "article");
 
 		// JEST Search
 		// You can search indexed article as:
 		String query = "{ \"query\": { \"match\" : { \"content\" : \"Lord\" } } }";
-		Search search = (Search) new Search.Builder(query).addIndex("dev").addType("article").build();
-		try {
-			JestResult result = client.execute(search);
+		jestSearch(client, "dev", "article", query);
+		
+		// JEST search with Model results
+		jestSearchModel(client, "dev", "article", query);
 
-			System.out.println(result.getJsonObject());
+		// elastic search
+		elasticSearch(client, "dev", "article", "harry");
+		
+
+		client.shutdownClient();
+	}
+
+	private static void elasticSearch(JestClient client, String indexName, String type, String query) {
+		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+		searchSourceBuilder.query(QueryBuilders.queryString(query));
+		Search searchElastic = (Search) new Search.Builder(searchSourceBuilder.toString())
+				// multiple index or types can be added.
+				.addIndex(indexName).addType(type).build();
+
+		try {
+			SearchResult elasticRs = client.execute(searchElastic);
+
+			List<Hit<Article, Void>> hits = elasticRs.getHits(Article.class);
+			for (Hit<Article, Void> hit : hits) {
+				Article talk = hit.source;
+				System.out.println(talk.toString());
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Search.Builder searchBuilder = new Search.Builder(query).addIndex("dev").addType("article");
+	}
+
+	private static void jestSearchModel(JestClient client, String indexName, String type, String query) {
+		Search.Builder searchBuilder = new Search.Builder(query).addIndex(indexName).addType(type);
 		try {
 			SearchResult result = client.execute(searchBuilder.build());
 
@@ -78,27 +85,43 @@ public class ElasticApp {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
 
-		// elastic search
-		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-		searchSourceBuilder.query(QueryBuilders.queryString("harry"));
-		Search searchElastic = (Search) new Search.Builder(searchSourceBuilder.toString())
-				// multiple index or types can be added.
-				.addIndex("dev").addType("article").build();
-
+	private static void jestSearch(JestClient client, String indexName, String type, String query) {
+		Search search = (Search) new Search.Builder(query).addIndex(indexName).addType(type).build();
 		try {
-			SearchResult elasticRs = client.execute(searchElastic);
+			JestResult result = client.execute(search);
 
-			List<Hit<Article, Void>> hits = elasticRs.getHits(Article.class);
-			for (Hit<Article, Void> hit : hits) {
-				Article talk = hit.source;
-				System.out.println(talk.toString());
-			}
+			System.out.println(result.getJsonObject());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		client.shutdownClient();
+	}
+
+	private static void insertDocument(JestClient client, String indexName, String type) {
+		Article source = new Article("Dan Brown", "Da Vinci Code");
+		Index index = new Index.Builder(source).index(indexName).type(type).build();
+		try {
+			client.execute(index);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void createIndex(String indexName, JestClient client) {
+		try {
+			client.execute(new CreateIndex.Builder(indexName).build());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static JestClient getClient(String serverUri) {
+		JestClientFactory factory = new JestClientFactory();
+		factory.setHttpClientConfig(new HttpClientConfig.Builder(serverUri).connTimeout(6000).readTimeout(6000)
+				.multiThreaded(true).build());
+		JestClient client = factory.getObject();
+		return client;
 	}
 
 }
