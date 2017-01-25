@@ -34,7 +34,7 @@ public class ElasticApp {
 //		createIndex(index, client);
 
 		// Insert an article;
-//		Article source = new Article("Author", "Title");
+//		Article source = new Article("Conor", "iRonoc");
 //		insertDocument(client, index, type, source);
 
 		// JEST Search
@@ -121,7 +121,7 @@ public class ElasticApp {
 
 	private static JestClient getClient(String serverUri) {
 		JestClientFactory factory = new JestClientFactory();
-		factory.setHttpClientConfig(new HttpClientConfig.Builder(serverUri).connTimeout(6000).readTimeout(6000)
+		factory.setHttpClientConfig(new HttpClientConfig.Builder(serverUri).connTimeout(10000).readTimeout(10000)
 				.multiThreaded(true).build());
 		JestClient client = factory.getObject();
 		return client;
