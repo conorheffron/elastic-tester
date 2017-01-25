@@ -34,7 +34,7 @@ public class ElasticApp {
 //		createIndex(index, client);
 
 		// Insert an article;
-//		Article source = new Article("Conor", "iRonoc");
+//		Article source = new Article("elastic", "JEST");
 //		insertDocument(client, index, type, source);
 
 		// JEST Search
@@ -54,7 +54,7 @@ public class ElasticApp {
 
 	private static void elasticSearch(JestClient client, String indexName, String type, String query) {
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-		QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryString(query);
+		QueryStringQueryBuilder queryStringQueryBuilder = QueryBuilders.queryStringQuery(query);
 		searchSourceBuilder.query(queryStringQueryBuilder);
 		Search searchElastic = (Search) new Search.Builder(searchSourceBuilder.toString())
 				// multiple index or types can be added.

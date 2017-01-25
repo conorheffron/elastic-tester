@@ -1,6 +1,6 @@
 package com.ironoc.elastic.model;
 
-import org.elasticsearch.common.joda.time.DateTime;
+import org.joda.time.DateTime;
 
 import com.google.gson.annotations.SerializedName;
 
