@@ -31,22 +31,22 @@ public class ElasticApp {
 		JestClient client = getClient(serverUri);
 
 		// Index Creation
-//		createIndex(index, client);
+		createIndex(index, client);
 
 		// Insert an article;
-//		Article source = new Article("elastic", "JEST");
-//		insertDocument(client, index, type, source);
+		Article source = new Article("elastic", "JEST");
+		insertDocument(client, index, type, source);
 
 		// JEST Search
 		// You can search indexed article as:
-		String query = "{ \"query\": { \"match\" : { \"content\" : \"Lord\" } } }";
+		String query = "{ \"query\": { \"match\" : { \"content\" : \"Jest\" } } }";
 		jestSearch(client, index, type, query);
 		
 		// JEST search with Model results
 		jestSearchModel(client, index, type, query);
 
 		// elastic search
-		elasticSearch(client, index, type, "harry");
+		elasticSearch(client, index, type, "JEST");
 		
 
 		client.shutdownClient();
