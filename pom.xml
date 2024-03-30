@@ -2,8 +2,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>elastic-tester</groupId>
-	<artifactId>elastic-tester</artifactId>
+	<artifactId>elastic-search-tester</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
+	<distributionManagement>
+	   <repository>
+	     <id>github</id>
+	     <name>GitHub conorheffron Apache Maven Packages</name>
+	     <url>https://maven.pkg.github.com/conorheffron/elastic-tester</url>
+	   </repository>
+	</distributionManagement>
 
 	<dependencies>
 		<dependency>
