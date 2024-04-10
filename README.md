@@ -29,4 +29,4 @@ Elastic hits: Article [authour=elastic, content=JEST, timestamp=2017-08-20T15:13
 ```
 
 ## Technologies Used
-### JDK 1.8.0_42, Spring 3.1.1, Tomcat 7.0 and Maven 4.7
+JDK 8, elasticsearch 7, and Maven 4.7
