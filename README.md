@@ -29,4 +29,4 @@ Elastic hits: Article [authour=elastic, content=JEST, timestamp=2017-08-20T15:13
 ```
 
 ## Technologies Used
-JDK 8, elasticsearch 7, and Maven 4.7
+JDK 8 and elasticsearch 7
