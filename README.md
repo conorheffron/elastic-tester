@@ -31,4 +31,4 @@ Elastic hits: Article [authour=elastic, content=JEST, timestamp=2017-08-20T15:13
 ```
 
 ## Technologies Used
-JDK 8 and elasticsearch 7
+JDK 22 and elasticsearch 8
