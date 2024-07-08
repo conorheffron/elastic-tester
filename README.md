@@ -1,5 +1,7 @@
 ![Auto Assign](https://github.com/conorheffron/elastic-tester/actions/workflows/auto-assign.yml/badge.svg)
 
+[![Java CI with Maven](https://github.com/conorheffron/elastic-tester/actions/workflows/maven.yml/badge.svg)](https://github.com/conorheffron/elastic-tester/actions/workflows/maven.yml)
+
 # elastic-tester
 Tool for testing elastic (ES, formerly elastic search) instance by storing no-sql JSON document by index and doc-type (to be setup manually in ES stack first).
 
