@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>elastic-tester</groupId>
 	<artifactId>elastic-search-tester</artifactId>
-	<version>3.4.8-RELEASE</version>
+	<version>3.5.1-RELEASE</version>
 	<distributionManagement>
 	   <repository>
 	     <id>github</id>
