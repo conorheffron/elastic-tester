@@ -1,9 +1,12 @@
+# elastic-tester
+ - Tool for testing elastic (ES, formerly elastic search) instance by storing no-sql JSON document by index and doc-type (to be setup manually in ES stack first).
+
 ![Auto Assign](https://github.com/conorheffron/elastic-tester/actions/workflows/auto-assign.yml/badge.svg)
 
 [![Java CI with Maven](https://github.com/conorheffron/elastic-tester/actions/workflows/maven.yml/badge.svg)](https://github.com/conorheffron/elastic-tester/actions/workflows/maven.yml)
 
-# elastic-tester
-Tool for testing elastic (ES, formerly elastic search) instance by storing no-sql JSON document by index and doc-type (to be setup manually in ES stack first).
+## Technologies Used
+ - JDK 22, elasticsearch 8
 
 # Program Arguments
 elastic-search-instance-url index doc-type
@@ -31,6 +34,3 @@ JEST Search raw JSON Object: {"_shards":{"total":1,"successful":1,"failed":0},"h
 JEST Search model hit: Article [authour=elastic, content=JEST, timestamp=2017-08-20T15:13:51.982-04:00]
 Elastic hits: Article [authour=elastic, content=JEST, timestamp=2017-08-20T15:13:51.982-04:00]
 ```
-
-## Technologies Used
-JDK 22 and elasticsearch 8
