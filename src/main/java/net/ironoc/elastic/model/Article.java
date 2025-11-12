@@ -1,4 +1,4 @@
-package com.ironoc.elastic.model;
+package net.ironoc.elastic.model;
 
 import org.joda.time.DateTime;
 
@@ -6,28 +6,28 @@ import com.google.gson.annotations.SerializedName;
 
 public class Article {
 
-	private String authour;
+	private String author;
 
 	private String content;
 	
 	@SerializedName("@timestamp")
 	private String timestamp;
 
-	public Article(String authour, String content) {
-		this.authour = authour;
+	public Article(String author, String content) {
+		this.author = author;
 		this.content = content;
 		this.timestamp = new DateTime().toString();
 	}
 
-	public String getAuthour() {
-		return authour;
-	}
+    public String getAuthor() {
+        return author;
+    }
 
-	public void setAuthour(String authour) {
-		this.authour = authour;
-	}
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-	public String getContent() {
+    public String getContent() {
 		return content;
 	}
 
@@ -45,7 +45,6 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [authour=" + authour + ", content=" + content + ", timestamp=" + timestamp + "]";
+		return "Article [author=" + author + ", content=" + content + ", timestamp=" + timestamp + "]";
 	}
-
 }
