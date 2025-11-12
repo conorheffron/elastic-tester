@@ -128,7 +128,7 @@ public class ElasticApp {
     }
 
     private static void insertDocument(JestClient client, String indexName, Object source) {
-		Index index = new Index.Builder(source).index(indexName).build();
+		Index index = new Index.Builder(source).index(indexName).type("_doc").build();
 		try {
 			client.execute(index);
 		} catch (IOException e) {
