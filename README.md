@@ -7,10 +7,6 @@
 ## Overview
 - Tool for testing elastic (ES, formerly elastic search) instance by storing `No-SQL` JSON documents by index (ES / Kibana instance setup required).
 
-![Auto Assign](https://github.com/conorheffron/elastic-tester/actions/workflows/auto-assign.yml/badge.svg)
-
-[![Java CI with Maven](https://github.com/conorheffron/elastic-tester/actions/workflows/maven.yml/badge.svg)](https://github.com/conorheffron/elastic-tester/actions/workflows/maven.yml)
-
 ## Technologies Used
 - JDK 22, Elastic 9 (formerly Elastic Search)
 
