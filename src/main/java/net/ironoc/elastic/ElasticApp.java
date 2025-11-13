@@ -50,7 +50,7 @@ public class ElasticApp {
             insertDocument(client, index, space);
         }
 
-		// JEST Search
+		// JEST Search (Section 1)
         System.out.println("* START MATCH ALL QUERY FOR JEST RESULT SET---------------------------------------*");
         int pageSize = 20; // Batch size
         int from = 0;
@@ -58,13 +58,13 @@ public class ElasticApp {
 		jestSearch(client, index, queryMatchAll);
 		System.out.println("* END MATCH ALL QUERY ---------------------------------------*");
 
-		// JEST search with Model results
+		// JEST search with Model results (Section 2.1 - JSON Output & Section 2.2 - Direct Mapping of articles Output)
         System.out.println("* START DIRECT MATCH QUERY FOR MODEL RESULTS ---------------------------------------*");
         String queryMatchAllPojo = "{ \"query\": { \"match_all\": {} } }";
 		jestSearchModel(client, index, queryMatchAllPojo);
         System.out.println("* END DIRECT MATCH QUERY ---------------------------------------*");
 
-		// elastic search
+		// elastic search query by query String (Section 3)
         System.out.println("* START DIRECT MATCH QUERY FOR ES RESULTS ---------------------------------------*");
 		elasticSearch(client, index, "Hadfield");
         System.out.println("* END DIRECT MATCH QUERY ---------------------------------------*");
