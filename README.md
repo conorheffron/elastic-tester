@@ -29,6 +29,7 @@ java -Djavax.net.ssl.trustStore=$TRUSTSTORE \
 ```
 
 ### Example Console Output
+##### - Section 1
 ```
 * START MATCH ALL QUERY FOR JEST RESULT SET---------------------------------------*
 -------------- JEST Search raw JSON Object: 
@@ -133,6 +134,9 @@ java -Djavax.net.ssl.trustStore=$TRUSTSTORE \
   }
 }
 * END MATCH ALL QUERY ---------------------------------------*
+```
+##### - Section 2.1
+```
 * START DIRECT MATCH QUERY FOR MODEL RESULTS ---------------------------------------*
 --------------
 {
@@ -235,6 +239,9 @@ java -Djavax.net.ssl.trustStore=$TRUSTSTORE \
     ]
   }
 }
+```
+##### - Section 2.2
+```
 Article [author=Robert Ludlum, content=I cant remember...The Bourne Identity, timestamp=2025-11-12T08:00:10.308Z]
 Article [author=Chris Hadfield, content=An Astronauts Guide to Life on Earth, to infinity and..., timestamp=2025-11-12T08:00:10.337Z]
 Article [author=Robert Ludlum, content=I cant remember...The Bourne Identity, timestamp=2025-11-12T08:02:10.540Z]
@@ -244,6 +251,9 @@ Article [author=John Doe, content=This is a sample article for testing Elasticse
 Article [author=John Gardner, content=Goldeneye, Shaken, Not Stirred..., timestamp=2025-11-12T08:02:10.345Z]
 Article [author=null, content=null, timestamp=null]
 * END DIRECT MATCH QUERY ---------------------------------------*
+```
+##### - Section 3
+```
 * START DIRECT MATCH QUERY FOR ES RESULTS ---------------------------------------*
 --------------
 {
