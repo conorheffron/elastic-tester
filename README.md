@@ -8,7 +8,7 @@
 - Tool for testing elastic (ES, formerly elastic search) instance by storing `No-SQL` JSON documents by index (ES / Kibana instance setup required).
 
 ## Technologies Used
-- JDK 22, Elastic 9 (formerly ElasticSearch)
+- JDK 22, Elastic 9 (formerly ElasticSearch), & JEST Client 6
 
 # Program Arguments
 ```shell
