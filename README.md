@@ -8,7 +8,7 @@
 - Tool for testing elastic (ES, formerly elastic search) instance by storing `No-SQL` JSON documents by index (ES / Kibana instance setup required).
 
 ## Technologies Used
-- JDK 22, Elastic 9 (formerly Elastic Search)
+- JDK 22, Elastic 9 (formerly ElasticSearch)
 
 # Program Arguments
 ```shell
@@ -24,7 +24,7 @@
 ```shell
 java -Djavax.net.ssl.trustStore=$TRUSTSTORE \
     -Djavax.net.ssl.trustStorePassword=$TRUSTPASS \
-    -cp target/elastic-search-tester-3.5.6-RELEASE-jar-with-dependencies.jar net.ironoc.elastic.ElasticApp \
+    -cp target/elastic-search-tester-3.5.8-RELEASE-jar-with-dependencies.jar net.ironoc.elastic.ElasticApp \
     "https://localhost:9200/" test_index elastic $ELASTIC_PASSWORD false
 ```
 
