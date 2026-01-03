@@ -24,7 +24,7 @@
 ```shell
 java -Djavax.net.ssl.trustStore=$TRUSTSTORE \
     -Djavax.net.ssl.trustStorePassword=$TRUSTPASS \
-    -cp target/elastic-search-tester-3.5.9-RELEASE-jar-with-dependencies.jar net.ironoc.elastic.ElasticApp \
+    -cp target/elastic-search-tester-3.6.0-RELEASE-jar-with-dependencies.jar net.ironoc.elastic.ElasticApp \
     "https://localhost:9200/" test_index elastic $ELASTIC_PASSWORD false
 ```
 
