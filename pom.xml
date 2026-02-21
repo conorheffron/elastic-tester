@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.ironoc.elastic</groupId>
 	<artifactId>elastic-search-tester</artifactId>
-	<version>3.6.1-RELEASE</version>
+	<version>3.6.2-RELEASE</version>
 	<distributionManagement>
 	   <repository>
 	     <id>github</id>
@@ -54,7 +54,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.14.1</version>
+				<version>3.15.0</version>
 				<configuration>
 					<source>22</source>
 					<target>22</target>
